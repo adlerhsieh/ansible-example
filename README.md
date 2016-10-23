@@ -3,11 +3,11 @@
 Testing if connection is successful:
 
 ```
-ansible web -m ping
+ansible all -m ping
 ```
 
 Running playbook:
 
 ```
-ansible-playbook webserver.yml
+ansible-playbook all.yml
 ```
