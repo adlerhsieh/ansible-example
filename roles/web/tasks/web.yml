@@ -13,14 +13,14 @@
     - name: create directories for ssl certificates
       file: path=/etc/nginx/ssl state=directory
     - name: copy TLS key
-      copy: src=files/nginx.key dest={{ key_file  }} owner=root mode=0600
+      copy: src=../files/nginx.key dest={{ key_file  }} owner=root mode=0600
       notify: restart nginx
     - name: copy TLS certificate
-      copy: src=files/nginx.crt dest={{ cert_file  }}
+      copy: src=../files/nginx.crt dest={{ cert_file  }}
       notify: restart nginx
 
     - name: copy nginx config file
-      template: src=templates/nginx.conf.j2 dest={{ conf_file  }}
+      template: src=../templates/nginx.conf.j2 dest={{ conf_file  }}
       notify: restart nginx
     - name: enable configuration
       file: >
@@ -30,7 +30,7 @@
       notify: restart nginx
 
     - name: copy index.html
-      template: src=templates/index.html.j2 dest=/usr/share/nginx/html/index.html
+      template: src=../templates/index.html.j2 dest=/usr/share/nginx/html/index.html
         mode=0644
 
   handlers:
