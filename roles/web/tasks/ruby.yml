@@ -1,18 +1,18 @@
 - name: Installing Ruby with rbenv
   hosts: web
   vars:
-    rbenv: "{{user_dir}}/.rbenv/bin/rbenv"
+    rbenv_exe: "{{user_dir}}/.rbenv/bin/rbenv"
     target_ruby_version: "2.3.1"
   tasks:
     - name: check if target ruby version is installed
-      command: "{{rbenv}} version"
+      command: "{{rbenv_exe}} version"
       register: current_ruby_version
 
-    - name: install ruby version {{ ruby_version }}
-      command: "{{rbenv}} install {{ ruby_version }}"
+    - name: install ruby version {{ target_ruby_version }}
+      command: "{{rbenv_exe}} install {{ target_ruby_version }}"
       when: target_ruby_version not in current_ruby_version.stdout
 
-    - name: set global ruby version
-      command: "{{rbenv}} global {{ ruby_version }}"
+    - name: set global ruby version as {{ target_ruby_version }}
+      command: "{{rbenv_exe}} global {{ target_ruby_version }}"
       when: target_ruby_version not in current_ruby_version.stdout
 

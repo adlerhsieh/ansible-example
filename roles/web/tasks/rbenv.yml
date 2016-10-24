@@ -3,17 +3,17 @@
   tasks:
     - name: verify rbenv installation
       stat: path="{{user_dir}}/.rbenv/bin/rbenv"
-      register: rbenv
+      register: rbenv_file
 
     - name: download rbenv script
       get_url: 
         url=https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer 
         dest="{{user_dir}}/rbenv-installer.sh"
-      when: rbenv.stat.exists != true
+      when: rbenv_file.stat.exists != true
 
     - name: run rbenv script
       command: bash {{user_dir}}/rbenv-installer.sh
-      when: rbenv.stat.exists != true
+      when: rbenv_file.stat.exists != true
 
     - name: remove rbenv script
       file: path={{user_dir}}/rbenv-installer.sh state=absent
