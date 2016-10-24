@@ -1,0 +1,29 @@
+- name: Installing rbenv
+  hosts: web
+  tasks:
+    - name: verify rbenv installation
+      stat: path="{{user_dir}}/.rbenv/bin/rbenv"
+      register: rbenv
+
+    - name: download rbenv script
+      get_url: 
+        url=https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer 
+        dest="{{user_dir}}/rbenv-installer.sh"
+      when: rbenv.stat.exists != true
+
+    - name: run rbenv script
+      command: bash {{user_dir}}/rbenv-installer.sh
+      when: rbenv.stat.exists != true
+
+    - name: remove rbenv script
+      file: path={{user_dir}}/rbenv-installer.sh state=absent
+
+    - name: add rbenv lines in .bashrc
+      blockinfile:
+        dest: "{{user_dir}}/.bashrc"
+        block: |
+          export RBENV_ROOT="${HOME}/.rbenv"
+          if [ -d "${RBENV_ROOT}"  ]; then
+            export PATH="${RBENV_ROOT}/bin:${PATH}"
+            eval "$(rbenv init -)"
+          fi
