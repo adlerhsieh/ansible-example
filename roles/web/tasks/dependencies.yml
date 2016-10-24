@@ -14,4 +14,13 @@
         - libxml2-dev
         - libxslt1-dev
         - zlib1g-dev
-
+        - build-essential 
+        - libyaml-dev 
+        - openssl 
+        - curl 
+        - git-core 
+        - bison 
+        - libcurl4-openssl-dev 
+        - libsqlite3-dev 
+        - sqlite3 
+        - python-software-properties
