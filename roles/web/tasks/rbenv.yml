@@ -23,6 +23,7 @@
     - name: add rbenv lines in .bashrc
       blockinfile:
         dest: "{{user_dir}}/.bashrc"
+        marker: "# {mark} Ansible rbenv"
         block: |
           export RBENV_ROOT="${HOME}/.rbenv"
           if [ -d "${RBENV_ROOT}"  ]; then

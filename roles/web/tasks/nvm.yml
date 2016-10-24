@@ -23,6 +23,7 @@
     - name: add nvm lines in .bashrc
       blockinfile:
         dest: "{{user_dir}}/.bashrc"
+        marker: "# {mark} Ansible nvm"
         block: |
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh"  ] && . "$NVM_DIR/nvm.sh" # This loads nvm
