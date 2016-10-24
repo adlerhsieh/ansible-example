@@ -1,8 +1,0 @@
-- name: Testing
-  hosts: all
-  become: true
-  tasks:
-    - name: capture output of id command
-      command: id -un
-      register: login
-    - debug: msg="Logged in as user '{{ login.stdout }}'"

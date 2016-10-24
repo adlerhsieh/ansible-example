@@ -1,0 +1,11 @@
+- name: Scripting
+  hosts: all
+  tasks:
+    - name: copy script
+      copy: src=../files/foo.rb dest=/home/ubuntu
+
+    - name: run script
+      command: ruby /home/ubuntu/foo.rb
+      register: result
+
+    - debug: msg="result is {{ result }}"
