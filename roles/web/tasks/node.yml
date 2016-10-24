@@ -1,0 +1,15 @@
+- name: Installing node
+  hosts: web
+  tasks:
+    - name: check if target node version is installed
+      become: true
+      command: bash -c '. {{user_dir}}/.nvm/nvm.sh; nvm version'
+      register: current_node_version
+
+    - name: install node version {{ target_node_version }}
+      command: bash -c '. {{user_dir}}/.nvm/nvm.sh; nvm install {{ target_node_version }}'
+      when: target_node_version not in current_node_version.stdout
+
+    - name: set default node version as {{ target_node_version }}
+      command: bash -c '. {{user_dir}}/.nvm/nvm.sh; nvm alias default {{ target_node_version }}'
+      when: target_node_version not in current_node_version.stdout
