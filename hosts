@@ -1,8 +1,10 @@
 [web]
 # host can be ip
-52.68.101.18
+# 52.68.101.18
+
 # or name with host ip attached as a variable
 my_host_1 ansible_ssh_host=52.193.213.21
+my_host_2 ansible_ssh_host=52.68.101.18
 
 # variables can be set in the same file
 # custom variables can be set within group variables
