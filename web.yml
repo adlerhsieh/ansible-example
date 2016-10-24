@@ -1,0 +1,3 @@
+- include: roles/web/tasks/dependencies.yml
+- include: roles/web/tasks/web.yml
+- include: roles/web/tasks/rbenv.yml

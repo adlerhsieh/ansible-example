@@ -1,2 +1,1 @@
-- include: roles/web/tasks/web.yml
-- include: roles/test/tasks/test.yml
+- include: web.yml
