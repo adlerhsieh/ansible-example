@@ -11,12 +11,14 @@
         dest="{{user_dir}}/rbenv-installer.sh"
       when: rbenv_file.stat.exists != true
 
-    - name: run rbenv script
+    - name: run rbenv install script
       command: bash {{user_dir}}/rbenv-installer.sh
       when: rbenv_file.stat.exists != true
 
     - name: remove rbenv script
-      file: path={{user_dir}}/rbenv-installer.sh state=absent
+      file: 
+        path={{user_dir}}/rbenv-installer.sh 
+        state=absent
 
     - name: add rbenv lines in .bashrc
       blockinfile:

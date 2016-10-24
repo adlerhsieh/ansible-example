@@ -1,0 +1,28 @@
+- name: Installing nvm
+  hosts: web
+  tasks:
+    - name: verify nvm installation
+      stat: path="{{user_dir}}/.nvm/nvm.sh"
+      register: nvm_file
+
+    - name: download nvm script
+      get_url:
+        url=https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh
+        dest="{{user_dir}}/nvm-installer.sh"
+      when: nvm_file.stat.exists != true
+
+    - name: run nvm install script
+      command: bash {{user_dir}}/nvm-installer.sh
+      when: nvm_file.stat.exists != true
+
+    - name: remove nvm script
+      file: 
+        path={{user_dir}}/nvm-installer.sh 
+        state=absent
+
+    - name: add nvm lines in .bashrc
+      blockinfile:
+        dest: "{{user_dir}}/.bashrc"
+        block: |
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh"  ] && . "$NVM_DIR/nvm.sh" # This loads nvm

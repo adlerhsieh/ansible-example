@@ -2,7 +2,6 @@
   hosts: web
   vars:
     rbenv_exe: "{{user_dir}}/.rbenv/bin/rbenv"
-    target_ruby_version: "2.3.1"
   tasks:
     - name: check if target ruby version is installed
       command: "{{rbenv_exe}} version"
