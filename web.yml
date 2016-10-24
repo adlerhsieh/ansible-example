@@ -1,6 +1,0 @@
-- include: roles/web/tasks/dependencies.yml
-- include: roles/web/tasks/web.yml
-- include: roles/web/tasks/rbenv.yml
-- include: roles/web/tasks/ruby.yml
-- include: roles/web/tasks/nvm.yml
-- include: roles/web/tasks/node.yml

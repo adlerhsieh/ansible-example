@@ -1,0 +1,6 @@
+- include: roles/server/tasks/dependencies.yml
+- include: roles/server/tasks/nginx.yml
+- include: roles/server/tasks/rbenv.yml
+- include: roles/server/tasks/ruby.yml
+- include: roles/server/tasks/nvm.yml
+- include: roles/server/tasks/node.yml
