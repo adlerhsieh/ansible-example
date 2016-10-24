@@ -9,5 +9,5 @@ ansible all -m ping
 Running playbook:
 
 ```
-ansible-playbook all.yml
+ansible-playbook site.yml
 ```
